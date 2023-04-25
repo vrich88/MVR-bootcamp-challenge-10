@@ -50,14 +50,7 @@ inquirer.prompt([
     {  /* question for background color */
         type: "input",
         name: "bkColor",
-        message: "Enter the color keyword or hexadecimal code for your logo stamps's background \n NOTE:  if blank background will be set to ''transparent''",
-        validate: (input) => {
-            if (input == "") {
-                return 00;
-            } else {
-                return true;
-            }
-        }
+        message: "Enter the color keyword or hexadecimal code for your logo stamps's background \n NOTE:  use ''transparent'' for no background",
     },
 ])
     // take the user input data and ues it to generate the logo stamp
@@ -68,31 +61,26 @@ inquirer.prompt([
         let shape = data.shape;
         let color = data.color;
         let bkColor = data.bkColor;
-        let newShape;
+        let shapeKey;
         if (shape === "Triangle") {
-            const newShape = new Triangle(color);
-            newShape.sketchTri(color);
+            let newShape = new Triangle(color);
+            shapeKey = newShape.render(color);
         } else if (shape === "Square") {
-            const newShape = new Square(color);
-            newShape.sketchSq(color);
+            let newShape = new Square(color);
+            shapeKey = newShape.render(color);
         } else if (shape === "Circle") {
-            const newShape = new Circle(color);
-            newShape.sketchCirc(color);
+            let newShape = new Circle(color);
+            shapeKey = newShape.render(color);
         };
         let logoStamp = `
-        <svg version="1.1"
-        width="300" height="200"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="${bkColor}" />
-        `
-        + newShape +
-        `
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${ltrColor}">${ltrs}</text>
-        </svg>
-    `;
+            <svg version="1.1"
+            width="300" height="200"
+            xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="${bkColor}" />
+            ` + shapeKey + `
+            <text x="50%" y="60%" font-size="60" dominant-baseline="middle" text-anchor="middle" fill="${ltrColor}">${ltrs}</text>
+            </svg>
+        `;
         fs.writeFile(`./examples/${shape}-logo-${ltrs}.svg`, logoStamp, (err) =>
             err ? console.log(err) : console.log("Your logo stamp has been generated and placed in the examples directory"))
     });
-
-// to start logo stamp generator on load
-// init();
