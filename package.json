@@ -4,5 +4,27 @@
   },
   "devDependencies": {
     "jest": "^29.5.0"
-  }
+  },
+  "name": "mvr-bootcamp-challenge-10",
+  "description": "Object-oriented Programming Challenge: SVG Logo Maker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrich88/MVR-bootcamp-challenge-10.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vrich88/MVR-bootcamp-challenge-10/issues"
+  },
+  "homepage": "https://github.com/vrich88/MVR-bootcamp-challenge-10#readme"
 }
